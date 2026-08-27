@@ -1,0 +1,9 @@
+1. Create Render PostgreSQL database.
+2. Create a Render Web Service from this repository with root directory blank.
+3. Build: pip install -r backend/requirements.txt
+4. Start: gunicorn --chdir backend app:app
+5. Add DATABASE_URL, SCANNER_TOKEN, NEWS_FEEDS.
+6. Deploy and test /health.
+7. Test the scanner and confirm stored stories.
+8. Add scheduled scanning.
+9. Then build Phase 3 verification/fact checking.

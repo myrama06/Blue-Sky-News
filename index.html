@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blue Sky News</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#10233f}
+header{background:#071a33;color:#fff;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-weight:900;font-size:20px}.nav button{background:none;color:#fff;border:0;margin-left:8px;font-weight:700}
+.hero{margin:18px auto;max-width:1100px;padding:35px 25px;border-radius:20px;background:linear-gradient(135deg,#071a33,#1768d8);color:white}
+.hero h1{font-size:clamp(30px,7vw,58px);margin:8px 0}.hero p{line-height:1.6}
+.wrap{max-width:1100px;margin:auto;padding:0 15px 40px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card,.panel,.livebox{background:#fff;border-radius:16px;padding:20px;box-shadow:0 5px 20px #00000010}
+.badge{display:inline-block;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:900}.confirmed{background:#d9f7e6;color:#08733c}.developing{background:#fff0c7;color:#8a5a00}.unverified{background:#ffe1e1;color:#a40000}
+.livebox{background:#071a33;color:#fff;min-height:280px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.live{color:#ff4545;font-weight:900}.play{font-size:55px}
+section{display:none}section.active{display:block}.update{border-left:5px solid #1768d8;padding:12px 15px;margin:12px 0;background:#fff;border-radius:10px}.breaking{border-left-color:#e00000}
+button.primary{background:#1268dc;color:#fff;border:0;border-radius:9px;padding:11px 16px;font-weight:700}
+footer{text-align:center;color:#6b778a;padding:30px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">☁️ BLUE SKY NEWS</div>
+<div class="nav">
+<button onclick="show('news')">News</button>
+<button onclick="show('live')">🔴 Live</button>
+<button onclick="show('about')">About</button>
+</div>
+</header>
+
+<section id="news" class="active">
+<div class="hero">
+<div>24/7 NEWS FOUNDATION</div>
+<h1>Amaqiniso kuqala.</h1>
+<p>Blue Sky News yakhelwe ukuletha izindaba ezicacile, ezilandelekayo nezibuyekezwayo.</p>
+<button class="primary" onclick="show('live')">Buka Live News</button>
+</div>
+<div class="wrap">
+<h2>Latest News</h2>
+<div class="grid" id="stories"></div>
+</div>
+</section>
+
+<section id="live">
+<div class="wrap">
+<h1><span class="live">● LIVE</span> Blue Sky Live</h1>
+<div class="livebox">
+<div class="play">▶</div><h2>LIVE VIDEO</h2>
+<p>Indawo ye-real livestream izoxhunywa esigabeni esilandelayo.</p>
+</div>
+<h2>Live Updates</h2>
+<div id="updates"></div>
+</div>
+</section>
+
+<section id="about">
+<div class="wrap">
+<div class="panel">
+<h1>Blue Sky News</h1>
+<p>Umgomo wethu uwukugcina izindaba zilandela amaqiniso, imithombo kanye nomlando wezibuyekezo.</p>
+<p><b>🟢 Confirmed</b> — kuqinisekisiwe.</p>
+<p><b>🟡 Developing</b> — ulwazi lusaqoqwa.</p>
+<p><b>🔴 Unverified</b> — akukakaqinisekiswa.</p>
+</div>
+</div>
+</section>
+
+<footer>Blue Sky News • Facts first • Transparent reporting</footer>
+
+<script>
+const stories=[
+ {title:"Blue Sky News Foundation",cat:"Technology",status:"confirmed",text:"I-Phase 1 ye-Blue Sky News foundation isilungile. Lena yindawo yokuqala yokwakha uhlelo oluphelele."},
+ {title:"Live News System",cat:"Breaking News",status:"developing",text:"I-live updates system isilungiselelwe ukuze izindaba ezintsha zibonakale ngokushesha."},
+ {title:"Future News Archive",cat:"Archive",status:"confirmed",text:"Uhlelo luzogcina umlando wezindaba nezibuyekezo ukuze kube nerekhodi elilandelekayo."}
+];
+const updates=[
+ {title:"SYSTEM ONLINE",msg:"Blue Sky Live foundation is online.",loc:"South Africa",level:"info"},
+ {title:"PHASE 1",msg:"News dashboard and live-news foundation ready.",loc:"Blue Sky News",level:"info"}
+];
+function show(id){document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function render(){
+ document.getElementById('stories').innerHTML=stories.map(s=>`<article class="card"><span class="badge ${s.status}">${s.status.toUpperCase()}</span><h3>${s.title}</h3><small>${s.cat}</small><p>${s.text}</p></article>`).join('');
+ document.getElementById('updates').innerHTML=updates.map(u=>`<div class="update ${u.level}"><small>NOW</small><h3>${u.title}</h3><p>${u.msg}</p><small>📍 ${u.loc}</small></div>`).join('');
+}
+render();
+</script>
+</body>
+</html>

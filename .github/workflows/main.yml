@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Run Blue Sky News Scan
         run: |
-          curl -fsS -X POST "https://blue-sky-news-backend.onrender.com/api/scan"
+         curl -fsS -X POST "postgresql://blue_sky_news_db_user:ceCW2XxUG3GoRUPGv3snf38jBfsdd1jZ@dpg-da83qdrbc2fs73cn17ig-a/blue_sky_news_db"
